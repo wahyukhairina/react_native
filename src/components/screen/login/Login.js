@@ -12,7 +12,6 @@ import {
 
 import bgImage from '../../../../images/bg-putih.png'
 import logo from '../../../../images/logofi1x.png'
-import { Icon } from 'react-native-vector-icons'
 // import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const { width: WIDTH } = Dimensions.get('window')
@@ -25,7 +24,7 @@ export default class Login extends Component {
           <Image source={logo} style={styles.Logo} />
         </View>
         <View styles={styles.inputContainer}> 
-        <Icon name="rocket" size={30} color="#900" />
+          
            <TextInput
               style={styles.input}
                 placeholder={'Username'}
@@ -36,7 +35,7 @@ export default class Login extends Component {
         </View>
 
         <View styles={styles.inputContainer}>
-          <Icon name={'ios-lock'} size={28} color={'rgba(255,255,255,0.7)'}  style={styles.inputicon}/>
+          
            <TextInput
               style={styles.input} 
                 placeholder={'Password'}
@@ -47,7 +46,7 @@ export default class Login extends Component {
             />
 
           <TouchableOpacity style={styles.btnEye}>
-            <Icon name={'ios-eye-outline'} size={26} color={'rgba(255,255,255,0.7)' }/>
+            
           </TouchableOpacity>
 
         </View>
@@ -83,7 +82,8 @@ const styles = StyleSheet.create({
     paddingLeft: 45,
     backgroundColor: 'rgba(0,0,0,0.35)',
     color: 'rgba(255, 255, 255, 0.7)',
-    marginHorizontal: 25 
+    marginHorizontal: 25,
+    marginTop: 10 
 
   },
   inputIcon: {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     left: 37
   }, 
   inputContainer: {
-    marginTop: 5
+    marginTop: 20
 
   },
   btnEye: {
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     width: WIDTH -55,
     height: 40,
     borderRadius: 25,
-    backgroundColor: '#432577',
+    backgroundColor: '#F0B3CE',
     justifyContent: 'center',
     marginTop: 20
   },
