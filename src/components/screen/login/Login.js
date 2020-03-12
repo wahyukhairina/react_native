@@ -1,5 +1,7 @@
+
 import React, {Component} from 'react';
 import axios from 'axios';
+import { REACT_APP_API_URL } from 'react-native-dotenv'
 import {AsyncStorage} from 'react-native';
 import {
   StyleSheet,
@@ -19,12 +21,17 @@ import logo from '../../../../images/logofi1x.png';
 const {width: WIDTH} = Dimensions.get('window');
 
 export default class Login extends Component {
+  static navigationOptions = {
+    header: null,
+  };
   state = {
     username: '',
     password: '',
   };
 
   componentDidMount() {
+    console.log({REACT_APP_API_URL})
+    console.log('ini')
     if (AsyncStorage.getItem('token')) {
       this.props.navigation.navigate('HomeScreen');
     } else {
@@ -35,7 +42,7 @@ export default class Login extends Component {
   onSubmit = () => {
     // console.log('sini');
     axios
-      .post('http://192.168.1.22:8006/user/login', this.state)
+      .post('http://192.168.1.27:8006/user/login', this.state)
       .then(res => {
         console.log(res);
         AsyncStorage.setItem('token', res.data.token);
@@ -131,7 +138,7 @@ const styles = StyleSheet.create({
     width: WIDTH - 55,
     height: 40,
     borderRadius: 25,
-    backgroundColor: '#F0B3CE',
+    backgroundColor: '#FFAEAE',
     justifyContent: 'center',
     marginTop: 20,
   },

@@ -3,12 +3,9 @@ import {connect} from 'react-redux';
 
 import {Container, Content, Form, Item, Input, Button, Text} from 'native-base';
 
-import {postProduct} from '../../redux/actions/product';
-
-class AddProduct extends Component {
+class EditProfile extends Component {
   static navigationOptions = {
-    header: null,
-    title: 'Add Product',
+    title: 'Update Product',
     headerStyle: {
       backgroundColor: 'rgb(245, 149, 84)',
     },
@@ -27,10 +24,10 @@ class AddProduct extends Component {
   };
 
   onSubmit = async () => {
-    console.log(this.state);
-    await this.props.dispatch(postProduct(this.state));
-    if (!this.props.products.products.isLoading) {
-      this.props.navigation.navigate('Product');
+    // const product = this.props.navigation.getParam('products');
+    // await this.props.dispatch(updateProduct(this.state, product.id));
+    // if (!this.props.products.products.isLoading) {
+    //   this.props.navigation.navigate('Product');
     }
   };
 
@@ -82,10 +79,4 @@ class AddProduct extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    products: state.products,
-  };
-};
-
-export default connect(mapStateToProps)(AddProduct);
+export default EditProfile;

@@ -14,6 +14,7 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {
   Button,
@@ -28,36 +29,63 @@ import {
 import home from '../../../../images/home.png';
 import management from '../../../../images/management.png';
 import profile from '../../../../images/profile.png';
+import edit from '../../../../images/edit.png';
+import deletebutton from '../../../../images/delete.png';
 import cart from '../../../../images/cart.png';
 
-class HomeScreen extends Component {
-  static navigationOptions = {
-    header: null,
+class ProductItem extends Component {
+  static navigationOptions = props => {
+    console.log(props);
+    return {
+      headerTitle: () => null,
+      headerRight: () => (
+        <TouchableOpacity
+          style={{
+            backgroundColor: '#FFAEAE',
+            padding: 8,
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 100,
+            marginRight: 20,
+            borderRadius: 25,
+          }}
+          onPress={() => props.navigation.navigate('AddProduct')}>
+          <Text
+            style={{
+              color: 'white',
+              borderRadius: 25,
+              backgroundColor: '#FFAEAE',
+            }}>
+            Add Product
+          </Text>
+        </TouchableOpacity>
+      ),
+    };
   };
 
   componentDidMount() {
     this.getProduct();
   }
 
-  searchProduct = name => {
-    console.log(name);
-    this.setState({
-      searchName: name,
-    });
-    this.props.dispatch(searchProduct(name));
-  };
-
   async getProduct() {
     await this.props.dispatch(getProduct());
   }
 
   async onDelete(id) {
-    await this.props.dispatch(deleteProduct(id));
-  }
-
-  async onClickSort(e) {
-    // console.log(e);
-    await this.props.dispatch(sortProduct(e));
+    Alert.alert(
+      'Delete Confirmation',
+      //body
+      'Are you sure want to delete this product ? ',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('No Pressed'),
+          style: 'cancel',
+        },
+        {text: 'Yes', onPress: () => this.props.dispatch(deleteProduct(id))},
+      ],
+      {cancelable: false},
+    );
   }
 
   convertToRupiah(angka) {
@@ -87,45 +115,67 @@ class HomeScreen extends Component {
 
   renderRow = ({item}) => {
     return (
-      <TouchableOpacity>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            marginBottom: 10,
-            borderBottomWidth: 1,
-            borderBottomColor: 'rgba(0,0,0,.1)',
-            height: 110,
-          }}>
-          <Image
-            source={{uri: item.image}}
-            style={{width: 100, height: 100, marginLeft: 10}}
-          />
-          <View style={{flex: 1, flexDirection: 'column'}}>
-            <Text
-              style={{
-                fontSize: 18,
-                marginLeft: 10,
-                marginBottom: 5,
-                fontFamily: 'monospace',
-              }}>
-              {item.name}
-            </Text>
-            <Text
-              style={{
-                fontSize: 15,
-                fontFamily: 'monospace',
-                marginLeft: 10,
-                marginBottom: 18,
-              }}>
-              Stock {item.stock}
-            </Text>
-            <Text style={{fontSize: 15, marginLeft: 10, marginBottom: 18}}>
-              {this.convertToRupiah(item.price)}
-            </Text>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          marginBottom: 10,
+          borderBottomWidth: 1,
+          borderBottomColor: 'rgba(0,0,0,.1)',
+          height: 110,
+        }}>
+        <Image
+          source={{uri: item.image, marginLeft: 10}}
+          style={{width: 100, height: 100, marginLeft: 10}}
+        />
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <Text
+            style={{
+              fontSize: 18,
+              marginLeft: 10,
+              marginBottom: 5,
+              fontFamily: 'monospace',
+            }}>
+            {item.name}
+          </Text>
+          <Text
+            style={{
+              fontSize: 15,
+              marginLeft: 10,
+              marginBottom: 5,
+              fontFamily: 'monospace',
+            }}>
+            Stock {item.stock}
+          </Text>
+          <Text style={{fontSize: 15, marginLeft: 10, marginBottom: 5}}>
+            {this.convertToRupiah(item.price)}
+          </Text>
+          <View style={{flexDirection: 'row', marginLeft: 170}}>
+            <TouchableOpacity
+              style={{marginLeft: 10}}
+              onPress={() =>
+                this.props.navigation.navigate('UpdateProduct', {
+                  products: item,
+                })
+              }>
+              <Image
+                style={{width: 20, height: 20, marginLeft: 5}}
+                source={edit}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.onDelete(item.id);
+              }}
+              style={{marginLeft: 10}}>
+              <Image
+                style={{width: 25, height: 25, marginLeft: 5}}
+                source={deletebutton}
+              />
+            </TouchableOpacity>
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
     );
   };
 
@@ -137,69 +187,10 @@ class HomeScreen extends Component {
       // <ImageBackground source={bg} style={styles.backgroundContainer} >
       <>
         <View style={{flex: 1, flexDirection: 'column'}}>
-          <View>
-            <Header style={{backgroundColor: '#FFAEAE'}} searchBar rounded>
-              <Item style={{borderRadius: 50}}>
-                <Input placeholder="Search" onChangeText={this.searchProduct} />
-              </Item>
-              <Button transparent>
-                <Text>Search</Text>
-              </Button>
-            </Header>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              marginTop: 10,
-              marginBottom: 10,
-              marginLeft: 10,
-            }}>
-            <TouchableOpacity
-              style={{
-                backgroundColor: '#FFAEAE',
-                borderRadius: 25,
-                width: 100,
-                height: 30,
-              }}
-              onPress={() => this.onClickSort('ASC')}>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontSize: 18,
-                  fontFamily: 'sans-serif-condensed',
-                  color: 'white',
-                }}>
-                Highest
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                backgroundColor: '#FFAEAE',
-                borderRadius: 25,
-                width: 100,
-                height: 30,
-                marginLeft: 10,
-              }}
-              onPress={() => this.onClickSort('DESC')}>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontSize: 18,
-                  fontFamily: 'sans-serif-condensed',
-                  color: 'white',
-                }}>
-                Lowest
-              </Text>
-            </TouchableOpacity>
-          </View>
-
           <View style={styles.FlatList}>
             <FlatList
               data={products}
               renderItem={this.renderRow}
-              // refreshing={products.isLoading}
-              // onRefresh={this.onRefreshing}
               keyExtractor={item => item.id}
             />
           </View>
@@ -265,4 +256,4 @@ const mapStateToProps = state => {
     products: state.products.products,
   };
 };
-export default connect(mapStateToProps)(HomeScreen);
+export default connect(mapStateToProps)(ProductItem);
