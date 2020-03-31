@@ -6,7 +6,7 @@ export const login = (data) => {
         type: 'LOGIN_USER',
         payload: axios({
             method:'POST',
-            url: `${REACT_APP_API_URL}`,
+            url: `${REACT_APP_API_URL}/user/login`,
             data: data
         })
     }

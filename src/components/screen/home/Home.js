@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { addCart } from '../../redux/actions/cart'
 import {
   getProduct,
   deleteProduct,
@@ -35,6 +36,7 @@ class HomeScreen extends Component {
     this.props.dispatch(searchProduct(name));
   };
 
+
   async getProduct() {
     await this.props.dispatch(getProduct());
   }
@@ -46,6 +48,26 @@ class HomeScreen extends Component {
   async onClickSort(e) {
     // console.log(e);
     await this.props.dispatch(sortProduct(e));
+  }
+
+async onAddCart (item){
+    const cart = this.props.cart
+    let i
+    cart.map(cart => {
+      if (cart.id === item.id) {
+        i = 0
+        return alert('Product have been added')
+      }
+      return products
+    })
+
+    if (i !== 0) {
+      const InitialTotal = this.props.total
+      const product = item
+      item.qty = 1
+      item.total = InitialTotal + product.price
+      await this.props.dispatch(addCart(item))
+    }
   }
 
   convertToRupiah(angka) {
@@ -95,7 +117,7 @@ class HomeScreen extends Component {
               marginLeft: 10,
               marginBottom: 5,
               fontFamily: 'monospace',
-            }}>
+            }} ellipsizeMode='tail' numberOfLines={1}>
             {item.name}
           </Text>
           <Text
@@ -112,7 +134,7 @@ class HomeScreen extends Component {
             <Text style={{fontSize: 15, marginLeft: 10, marginBottom: 18}}>
               {this.convertToRupiah(item.price)}
             </Text>
-            <TouchableOpacity style={{marginLeft: '50%'}}>
+            <TouchableOpacity onPress={()=> this.onAddCart (item)} style={{marginLeft: '50%'}}>
               <Icon name="cart" size={25} />
             </TouchableOpacity>
           </View>
@@ -224,6 +246,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   return {
     products: state.products.products,
+    cart: state.cart.cart,
+    total: state.cart.total
   };
 };
 export default connect(mapStateToProps)(HomeScreen);

@@ -1,5 +1,7 @@
 
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { login } from '../../redux/actions/auth';
 import axios from 'axios';
 import { REACT_APP_API_URL } from 'react-native-dotenv'
 import {AsyncStorage} from 'react-native';
@@ -20,7 +22,7 @@ import logo from '../../../../images/logofi1x.png';
 // import { TouchableOpacity } from 'react-native-gesture-handler'
 const {width: WIDTH} = Dimensions.get('window');
 
-export default class Login extends Component {
+ class Login extends Component {
   static navigationOptions = {
     header: null,
   };
@@ -29,31 +31,18 @@ export default class Login extends Component {
     password: '',
   };
 
-  componentDidMount() {
-    console.log({REACT_APP_API_URL})
-    console.log('ini')
-    if (AsyncStorage.getItem('token')) {
-      this.props.navigation.navigate('HomeScreen');
-    } else {
-      this.props.navigation.navigate('Login');
+    componentDidMount(){
+      if(this.props.auth.isAuthenticated) {
+        this.props.navigation.navigate('Home')
+      }
     }
-  }
+  
 
-  onSubmit = () => {
-    // console.log('sini');
-    axios
-      .post('http://192.168.1.27:8006/user/login', this.state)
-      .then(res => {
-        console.log(res);
-        AsyncStorage.setItem('token', res.data.token);
-        AsyncStorage.setItem('user-id', res.data.user_id);
-        AsyncStorage.setItem('isAuth', true);
-        this.props.navigation.navigate('HomeScreen');
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  onSubmit = async (e) =>{
+    console.log('ini submit', this.state)
+    await this.props.dispatch(login(this.state))
+    this.props.navigation.navigate('Home')
+  }
 
   render() {
     console.log(this.props);
@@ -92,7 +81,14 @@ export default class Login extends Component {
       </>
     );
   }
-}
+ }
+
+const mapStateToProps = (state) => {
+  return {
+      auth: state.auth
+  }
+} 
+export default connect(mapStateToProps) (Login)
 
 const styles = StyleSheet.create({
   backgroundContainer: {
