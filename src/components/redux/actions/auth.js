@@ -1,11 +1,12 @@
 import axios from 'axios'
+import {REACT_APP_API_URL} from 'react-native-dotenv';
 
 export const login = (data) => {
     return {
         type: 'LOGIN_USER',
         payload: axios({
             method:'POST',
-            url: 'http://192.168.1.21:8006/user/login',
+            url: `${REACT_APP_API_URL}`,
             data: data
         })
     }

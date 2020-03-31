@@ -15,20 +15,8 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import {
-  Button,
-  Header,
-  Item,
-  Icon,
-  Input,
-  Footer,
-  FooterTab,
-} from 'native-base';
-
-import home from '../../../../images/home.png';
-import management from '../../../../images/management.png';
-import profile from '../../../../images/profile.png';
-import cart from '../../../../images/cart.png';
+import {Button, Header, Item, Input, Footer, FooterTab} from 'native-base';
+import Icon from 'react-native-vector-icons/EvilIcons';
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -87,45 +75,49 @@ class HomeScreen extends Component {
 
   renderRow = ({item}) => {
     return (
-      <TouchableOpacity>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            marginBottom: 10,
-            borderBottomWidth: 1,
-            borderBottomColor: 'rgba(0,0,0,.1)',
-            height: 110,
-          }}>
-          <Image
-            source={{uri: item.image}}
-            style={{width: 100, height: 100, marginLeft: 10}}
-          />
-          <View style={{flex: 1, flexDirection: 'column'}}>
-            <Text
-              style={{
-                fontSize: 18,
-                marginLeft: 10,
-                marginBottom: 5,
-                fontFamily: 'monospace',
-              }}>
-              {item.name}
-            </Text>
-            <Text
-              style={{
-                fontSize: 15,
-                fontFamily: 'monospace',
-                marginLeft: 10,
-                marginBottom: 18,
-              }}>
-              Stock {item.stock}
-            </Text>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          marginBottom: 10,
+          borderBottomWidth: 1,
+          borderBottomColor: 'rgba(0,0,0,.1)',
+          height: 110,
+        }}>
+        <Image
+          source={{uri: item.image}}
+          style={{width: 100, height: 100, marginLeft: 10}}
+        />
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <Text
+            style={{
+              fontSize: 18,
+              marginLeft: 10,
+              marginBottom: 5,
+              fontFamily: 'monospace',
+            }}>
+            {item.name}
+          </Text>
+          <Text
+            style={{
+              fontSize: 15,
+              fontFamily: 'monospace',
+              marginLeft: 10,
+              marginBottom: 18,
+            }}>
+            Stock {item.stock}
+          </Text>
+
+          <View style={{flexDirection: 'row'}}>
             <Text style={{fontSize: 15, marginLeft: 10, marginBottom: 18}}>
               {this.convertToRupiah(item.price)}
             </Text>
+            <TouchableOpacity style={{marginLeft: '50%'}}>
+              <Icon name="cart" size={25} />
+            </TouchableOpacity>
           </View>
         </View>
-      </TouchableOpacity>
+      </View>
     );
   };
 
@@ -134,7 +126,6 @@ class HomeScreen extends Component {
     const {products} = this.props;
     console.log(products);
     return (
-      // <ImageBackground source={bg} style={styles.backgroundContainer} >
       <>
         <View style={{flex: 1, flexDirection: 'column'}}>
           <View>
@@ -203,37 +194,7 @@ class HomeScreen extends Component {
               keyExtractor={item => item.id}
             />
           </View>
-
-          <View style={{flex: 1}}>
-            <View>
-              <Footer>
-                <FooterTab style={{backgroundColor: '#F2F2F2'}}>
-                  <TouchableOpacity
-                    style={{marginLeft: 30}}
-                    onPress={() =>
-                      this.props.navigation.navigate('HomeScreen')
-                    }>
-                    <Image style={styles.icon} source={home} />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('Product')}>
-                    <Image style={styles.icon} source={management} />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('CartItem')}>
-                    <Image style={styles.icon} source={cart} />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={{marginRight: 30}}
-                    onPress={() => this.props.navigation.navigate('Profile')}>
-                    <Image style={styles.icon} source={profile} />
-                  </TouchableOpacity>
-                </FooterTab>
-              </Footer>
-            </View>
-          </View>
         </View>
-        {/* </ImageBackground> */}
       </>
     );
   }

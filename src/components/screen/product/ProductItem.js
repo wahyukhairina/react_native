@@ -16,15 +16,6 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import {
-  Button,
-  Header,
-  Item,
-  Icon,
-  Input,
-  Footer,
-  FooterTab,
-} from 'native-base';
 
 import home from '../../../../images/home.png';
 import management from '../../../../images/management.png';
@@ -193,35 +184,6 @@ class ProductItem extends Component {
               renderItem={this.renderRow}
               keyExtractor={item => item.id}
             />
-          </View>
-
-          <View style={{flex: 1}}>
-            <View>
-              <Footer>
-                <FooterTab style={{backgroundColor: '#F2F2F2'}}>
-                  <TouchableOpacity
-                    style={{marginLeft: 30}}
-                    onPress={() =>
-                      this.props.navigation.navigate('HomeScreen')
-                    }>
-                    <Image style={styles.icon} source={home} />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('Product')}>
-                    <Image style={styles.icon} source={management} />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('CartItem')}>
-                    <Image style={styles.icon} source={cart} />
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    style={{marginRight: 30}}
-                    onPress={() => this.props.navigation.navigate('Profile')}>
-                    <Image style={styles.icon} source={profile} />
-                  </TouchableOpacity>
-                </FooterTab>
-              </Footer>
-            </View>
           </View>
         </View>
         {/* </ImageBackground> */}
