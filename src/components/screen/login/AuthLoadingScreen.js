@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../redux/actions/auth';
 import {
   ActivityIndicator,
   AsyncStorage,

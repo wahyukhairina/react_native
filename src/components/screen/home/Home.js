@@ -27,6 +27,10 @@ class HomeScreen extends Component {
   componentDidMount() {
     this.getProduct();
   }
+  
+  componentDidUpdate() {
+    this.getProduct()
+  }
 
   searchProduct = name => {
     console.log(name);

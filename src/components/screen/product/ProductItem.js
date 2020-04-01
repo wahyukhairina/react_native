@@ -126,7 +126,7 @@ class ProductItem extends Component {
               marginLeft: 10,
               marginBottom: 5,
               fontFamily: 'monospace',
-            }}>
+            }} ellipsizeMode='tail' numberOfLines={1}>
             {item.name}
           </Text>
           <Text

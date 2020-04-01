@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-
+import { logout } from '../../redux/actions/auth';
+import { connect } from 'react-redux';
 import {
   View,
   Text,
@@ -21,11 +22,9 @@ class Profile extends Component {
   static navigationOptions = {
     header: null,
   };
-  onLogout() {
-    AsyncStorage.removeItem('user-id');
-    AsyncStorage.removeItem('token');
-    AsyncStorage.removeItem('isAuth');
-    this.props.navigation.navigate('Home');
+  async onLogout() {
+    await this.props.dispatch(logout())
+    this.props.navigation.navigate('Login')
   }
 
   render() {
@@ -113,7 +112,7 @@ class Profile extends Component {
               borderRadius: 25,
               marginBottom: 10,
             }}
-            onPress={this.onLogout.bind(this)}>
+            onPress={()=>this.onLogout()}>
             <Text
               style={{
                 textAlign: 'center',
@@ -156,4 +155,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile;
+export default connect() (Profile);

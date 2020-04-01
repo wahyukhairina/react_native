@@ -59,7 +59,8 @@ const initialState = {
           case 'REMOVE_CART':
           return{
             ...state,
-            cart: []
+            cart: [],
+            total : 0
           }
       default:
         return state
