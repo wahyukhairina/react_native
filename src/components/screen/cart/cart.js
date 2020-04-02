@@ -171,9 +171,9 @@ class CartItem extends Component {
               keyExtractor={item => item.id}
             />
           </View>
-          <View style={{flexDirection:'row', height:'6%', alignItems:'center'}}>
-            <Text style={{fontSize: 16}}>Total : {this.convertToRupiah(this.props.total)}</Text>
-            <TouchableOpacity onPress={()=> this.onCheckout(cart)} style={{marginLeft:'3%', width:'25%',borderRadius: 5, height:'70%', alignItems:'center', backgroundColor:'#FFAEAE'}}><Text style={{fontSize: 16}}>Checkout</Text></TouchableOpacity>
+          <View style={{flexDirection:'row', height:'6%', alignItems:'center',  backgroundColor:'#C0C0C0'}}>
+            <Text style={{marginLeft: '5%', fontSize: 16}}>Total : {this.convertToRupiah(this.props.total)}</Text>
+            <TouchableOpacity onPress={()=> this.onCheckout(cart)} style={{marginLeft:'30%', width:'25%',borderRadius: 5, height:'70%', alignItems:'center', backgroundColor:'#FFAEAE'}}><Text style={{fontSize: 16}}>Checkout</Text></TouchableOpacity>
           </View>
         </View>
         :

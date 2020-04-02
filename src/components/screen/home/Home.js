@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 import {Button, Header, Item, Input, Footer, FooterTab} from 'native-base';
 import Icon from 'react-native-vector-icons/EvilIcons';
+import { ScrollView } from 'react-native-gesture-handler';
 
 class HomeScreen extends Component {
   static navigationOptions = {
@@ -149,16 +150,21 @@ async onAddCart (item){
       <>
         <View style={{flex: 1, flexDirection: 'column'}}>
           <View>
+            <View>
             <Header style={{backgroundColor: '#FFAEAE'}} searchBar rounded>
-              <Item style={{borderRadius: 50}}>
+              <Item style={{borderRadius: 30}}>
                 <Input placeholder="Search" onChangeText={this.searchProduct} />
               </Item>
               <Button transparent>
                 <Text>Search</Text>
               </Button>
             </Header>
+            </View>
+            <View>
+             
+            </View>
           </View>
-
+          
           <View
             style={{
               flexDirection: 'row',
@@ -166,6 +172,7 @@ async onAddCart (item){
               marginBottom: 10,
               marginLeft: 10,
             }}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <TouchableOpacity
               style={{
                 backgroundColor: '#FFAEAE',
@@ -181,7 +188,7 @@ async onAddCart (item){
                   fontFamily: 'sans-serif-condensed',
                   color: 'white',
                 }}>
-                Highest
+                Rice
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -200,10 +207,50 @@ async onAddCart (item){
                   fontFamily: 'sans-serif-condensed',
                   color: 'white',
                 }}>
-                Lowest
+                Pasta
               </Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                backgroundColor: '#FFAEAE',
+                borderRadius: 25,
+                width: 100,
+                height: 30,
+                marginLeft: 10,
+              }}
+              onPress={() => this.onClickSort('DESC')}>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 18,
+                  fontFamily: 'sans-serif-condensed',
+                  color: 'white',
+                }}>
+              Finger Food
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                backgroundColor: '#FFAEAE',
+                borderRadius: 25,
+                width: 100,
+                height: 30,
+                marginLeft: 10,
+              }}
+              onPress={() => this.onClickSort('DESC')}>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 18,
+                  fontFamily: 'sans-serif-condensed',
+                  color: 'white',
+                }}>
+              Salad
+              </Text>
+            </TouchableOpacity>
+            </ScrollView>
           </View>
+
 
           <View style={styles.FlatList}>
             <FlatList
