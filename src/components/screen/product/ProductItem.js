@@ -16,44 +16,11 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-
-import home from '../../../../images/home.png';
-import management from '../../../../images/management.png';
-import profile from '../../../../images/profile.png';
-import edit from '../../../../images/edit.png';
-import deletebutton from '../../../../images/delete.png';
-import cart from '../../../../images/cart.png';
+import Icon from 'react-native-vector-icons/Entypo'
+ import { withNavigation } from 'react-navigation'
 
 class ProductItem extends Component {
-  static navigationOptions = props => {
-    console.log(props);
-    return {
-      headerTitle: () => null,
-      headerRight: () => (
-        <TouchableOpacity
-          style={{
-            backgroundColor: '#FFAEAE',
-            padding: 8,
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: 100,
-            marginRight: 20,
-            borderRadius: 25,
-          }}
-          onPress={() => props.navigation.navigate('AddProduct')}>
-          <Text
-            style={{
-              color: 'white',
-              borderRadius: 25,
-              backgroundColor: '#FFAEAE',
-            }}>
-            Add Product
-          </Text>
-        </TouchableOpacity>
-      ),
-    };
-  };
-
+  
   componentDidMount() {
     this.getProduct();
   }
@@ -149,20 +116,14 @@ class ProductItem extends Component {
                   products: item,
                 })
               }>
-              <Image
-                style={{width: 20, height: 20, marginLeft: 5}}
-                source={edit}
-              />
+              <Icon name='pencil' size={20} color='grey'/>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
                 this.onDelete(item.id);
               }}
               style={{marginLeft: 10}}>
-              <Image
-                style={{width: 25, height: 25, marginLeft: 5}}
-                source={deletebutton}
-              />
+              <Icon name='trash' size={20} color='grey'/>
             </TouchableOpacity>
           </View>
         </View>
@@ -175,7 +136,6 @@ class ProductItem extends Component {
     const {products} = this.props;
     console.log(products);
     return (
-      // <ImageBackground source={bg} style={styles.backgroundContainer} >
       <>
         <View style={{flex: 1, flexDirection: 'column'}}>
           <View style={styles.FlatList}>
@@ -183,10 +143,10 @@ class ProductItem extends Component {
               data={products}
               renderItem={this.renderRow}
               keyExtractor={item => item.id}
+              showsVerticalScrollIndicator={false}
             />
           </View>
         </View>
-        {/* </ImageBackground> */}
       </>
     );
   }
@@ -218,4 +178,4 @@ const mapStateToProps = state => {
     products: state.products.products,
   };
 };
-export default connect(mapStateToProps)(ProductItem);
+export default withNavigation(connect(mapStateToProps)(ProductItem));

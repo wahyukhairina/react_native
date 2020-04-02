@@ -114,10 +114,11 @@ class CartItem extends Component {
             <TouchableOpacity
               onPress={() => this.reduceQuantity(item)}
               style={{
-                backgroundColor: 'red',
+                backgroundColor: '#FFAEAE',
                 width: '10%',
                 height: '100%',
                 alignItems: 'center',
+                borderRadius: 5
               }}>
               <Text>-</Text>
             </TouchableOpacity>
@@ -128,21 +129,23 @@ class CartItem extends Component {
             <TouchableOpacity
               onPress={() => this.addQuantity(item)}
               style={{
-                backgroundColor: 'red',
+                backgroundColor: '#FFAEAE',
                 width: '10%',
                 height: '100%',
                 alignItems: 'center',
+                borderRadius: 5
               }}>
               <Text>+</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => this.removeItem(item)}
               style={{
-                backgroundColor: 'red',
+                backgroundColor: '#FFAEAE',
                 width: '40%',
                 height: '110%',
                 alignItems: 'center',
                 marginHorizontal: '20%',
+                borderRadius: 5
               }}>
               <Text>Remove</Text>
             </TouchableOpacity>
@@ -170,7 +173,7 @@ class CartItem extends Component {
           </View>
           <View style={{flexDirection:'row', height:'6%', alignItems:'center'}}>
             <Text style={{fontSize: 16}}>Total : {this.convertToRupiah(this.props.total)}</Text>
-            <TouchableOpacity onPress={()=> this.onCheckout(cart)} style={{marginLeft:'30%', width:'25%', height:'70%', alignItems:'center', backgroundColor:'red'}}><Text style={{fontSize: 16}}>Checkout</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=> this.onCheckout(cart)} style={{marginLeft:'3%', width:'25%',borderRadius: 5, height:'70%', alignItems:'center', backgroundColor:'#FFAEAE'}}><Text style={{fontSize: 16}}>Checkout</Text></TouchableOpacity>
           </View>
         </View>
         :

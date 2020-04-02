@@ -24,33 +24,27 @@ class HomeScreen extends Component {
     header: null,
   };
 
-  componentDidMount() {
-    this.getProduct();
+  state = {
+    product : []
   }
-  
-  componentDidUpdate() {
-    this.getProduct()
+
+  async componentDidMount() {
+   await this.getProduct();
   }
 
   searchProduct = name => {
-    console.log(name);
-    this.setState({
-      searchName: name,
-    });
     this.props.dispatch(searchProduct(name));
   };
 
 
   async getProduct() {
     await this.props.dispatch(getProduct());
+    this.setState = ({
+      product : this.props.products
+    })
   }
-
-  async onDelete(id) {
-    await this.props.dispatch(deleteProduct(id));
-  }
-
+  
   async onClickSort(e) {
-    // console.log(e);
     await this.props.dispatch(sortProduct(e));
   }
 
@@ -95,9 +89,9 @@ async onAddCart (item){
       ',-'
     );
   }
-  // onRefreshing = () => {
-  //     this.getProduct();
-  // }
+  onRefreshing = () => {
+      this.getProduct();
+  }
 
   renderRow = ({item}) => {
     return (
@@ -149,8 +143,8 @@ async onAddCart (item){
 
   render() {
     console.disableYellowBox = true;
-    const {products} = this.props;
-    console.log(products);
+    const {products} = this.props.products;
+    console.log(this.props.products)
     return (
       <>
         <View style={{flex: 1, flexDirection: 'column'}}>
@@ -215,8 +209,9 @@ async onAddCart (item){
             <FlatList
               data={products}
               renderItem={this.renderRow}
-              // refreshing={products.isLoading}
-              // onRefresh={this.onRefreshing}
+              showsVerticalScrollIndicator={false}
+              refreshing={this.props.products.isLoading}
+              onRefresh={this.onRefreshing}
               keyExtractor={item => item.id}
             />
           </View>
@@ -249,7 +244,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    products: state.products.products,
+    products: state.products,
     cart: state.cart.cart,
     total: state.cart.total
   };
