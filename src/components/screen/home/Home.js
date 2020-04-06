@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import { addCart } from '../../redux/actions/cart'
 import {
   getProduct,
-  deleteProduct,
+  getSort,
   searchProduct,
   sortProduct,
 } from '../../redux/actions/product';
@@ -48,6 +48,11 @@ class HomeScreen extends Component {
   async onClickSort(e) {
     await this.props.dispatch(sortProduct(e));
   }
+
+  async onClickCategory(e) {
+    await this.props.dispatch(getSort(e));
+  }
+
 
 async onAddCart (item){
     const cart = this.props.cart
@@ -180,7 +185,26 @@ async onAddCart (item){
                 width: 100,
                 height: 30,
               }}
-              onPress={() => this.onClickSort('ASC')}>
+              onPress={() => this.onClickCategory('')}>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontSize: 18,
+                  fontFamily: 'sans-serif-condensed',
+                  color: 'white',
+                }}>
+                All
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                backgroundColor: '#FFAEAE',
+                borderRadius: 25,
+                width: 100,
+                height: 30,
+                marginLeft: 10
+              }}
+              onPress={() => this.onClickCategory('rice')}>
               <Text
                 style={{
                   textAlign: 'center',
@@ -199,7 +223,7 @@ async onAddCart (item){
                 height: 30,
                 marginLeft: 10,
               }}
-              onPress={() => this.onClickSort('DESC')}>
+              onPress={() => this.onClickCategory('pasta')}>
               <Text
                 style={{
                   textAlign: 'center',
@@ -218,7 +242,7 @@ async onAddCart (item){
                 height: 30,
                 marginLeft: 10,
               }}
-              onPress={() => this.onClickSort('DESC')}>
+              onPress={() => this.onClickCategory('finger food')}>
               <Text
                 style={{
                   textAlign: 'center',
@@ -237,7 +261,7 @@ async onAddCart (item){
                 height: 30,
                 marginLeft: 10,
               }}
-              onPress={() => this.onClickSort('DESC')}>
+              onPress={() => this.onClickCategory('salad')}>
               <Text
                 style={{
                   textAlign: 'center',

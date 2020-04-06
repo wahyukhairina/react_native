@@ -6,7 +6,17 @@ export const getProduct = () => {
     type: 'GET_PRODUCT',
     payload: axios({
       method: 'GET',
-      url: `${REACT_APP_API_URL}/product`,
+      url: `${REACT_APP_API_URL}/product/`,
+    }),
+  };
+};
+
+export const getSort = type => {
+  return {
+    type: 'GET_PRODUCT',
+    payload: axios({
+      method: 'GET',
+      url: `${REACT_APP_API_URL}/product/?category=${type}`,
     }),
   };
 };

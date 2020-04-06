@@ -22,6 +22,23 @@ export default (products = (state = initialState, action) => {
         isLoading: false,
         products: action.payload.data.result,
       };
+    case 'GET_SORT_PENDING':
+      console.log('ini', action.payload);
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case 'GET_SORT_REJECTED':
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case 'GET_SORT_FULFILLED':
+      return {
+        ...state,
+        isLoading: false,
+        products: action.payload.data.result,
+      };
     case 'POST_PRODUCT_PENDING':
       console.log('ini', action.payload);
       return {

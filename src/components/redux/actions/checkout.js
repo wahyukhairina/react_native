@@ -2,7 +2,7 @@ import axios from 'axios'
 import {REACT_APP_API_URL} from 'react-native-dotenv';
 
 export const postOrder = (data) => {
-    console.log(data)
+    console.log('mmmm',data)
     return {
       type: 'POST_ORDER',
       payload: axios.post(`${REACT_APP_API_URL}/order`, data)
