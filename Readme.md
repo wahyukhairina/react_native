@@ -1,7 +1,7 @@
 <h1 align='center'>GeoChat <br>Maps & Chat Application</h1>
 
 <p align='center'>
-    <img width="400" src='./rdm/login.png' />
+    <img width="400" src='https://user-images.githubusercontent.com/61218212/78546040-015ab180-7827-11ea-86ca-9846fdb5b058.gif' />
 </p>
 
 <br>
