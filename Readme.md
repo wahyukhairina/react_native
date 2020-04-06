@@ -35,4 +35,6 @@ You can Download the APK [`here`](https://drive.google.com/drive/folders/1FwjDWA
   </span>
 </p>
 
+## License
+© [Wahyu Khairina](https://github.com/wahyukhairina/ " Wahyu Khairina")
 
