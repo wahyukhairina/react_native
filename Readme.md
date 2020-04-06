@@ -1,4 +1,4 @@
-<h1 align='center'>totalin <br>Point of Sales Application</h1>
+<h1 align='center'>-Totalin-<br>Point of Sales Application</h1>
 
 <p align='center'>
     <img width="400" src='https://user-images.githubusercontent.com/61218212/78546040-015ab180-7827-11ea-86ca-9846fdb5b058.gif' />
@@ -30,7 +30,7 @@ You can Download the APK [`here`](https://drive.google.com/drive/folders/1FwjDWA
 ## Screenshot from the App
 <p align='center'>
   <span>
-      <image width="800" src="./rdm/ui_app.png" />
+      <image width="800" src="https://user-images.githubusercontent.com/61218212/78548788-8778f700-782b-11ea-9bfd-98ccd36964f3.png" />
       
   </span>
 </p>
