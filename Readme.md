@@ -30,7 +30,7 @@ You can Download the APK [`here`](https://drive.google.com/drive/folders/1FwjDWA
 ## Screenshot from the App
 <p align='center'>
   <span>
-      <image width="800" src="https://user-images.githubusercontent.com/61218212/78548788-8778f700-782b-11ea-9bfd-98ccd36964f3.png" />
+      <image width="900" src="https://user-images.githubusercontent.com/61218212/78548788-8778f700-782b-11ea-9bfd-98ccd36964f3.png" />
       
   </span>
 </p>
